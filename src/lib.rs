@@ -4,11 +4,38 @@ use android_activity::{
 };
 use log::info;
 
+struct Sound {
+    inner: geng_audio::Sound,
+}
+
+impl Sound {
+    fn play(&self) {
+        self.inner.play();
+    }
+}
+
+struct Audio {
+    inner: geng_audio::Audio,
+}
+
+impl Audio {
+    fn new() -> Self {
+        Self {
+            inner: geng_audio::Audio::new().unwrap(),
+        }
+    }
+    fn decode(&self, buffer: Vec<u8>) -> Sound {
+        Sound {
+            inner: futures::executor::block_on(self.inner.decode(buffer)).unwrap(),
+        }
+    }
+}
+
 #[no_mangle]
 fn android_main(app: AndroidApp) {
     android_logger::init_once(android_logger::Config::default().with_min_level(log::Level::Info));
 
-    let audio = geng_audio::Audio::new().unwrap();
+    let audio = Audio::new();
     let sound = {
         use std::io::Read;
         let asset_manager = app.asset_manager();
@@ -16,7 +43,7 @@ fn android_main(app: AndroidApp) {
         let mut asset = asset_manager.open(path.as_c_str()).unwrap();
         let mut buffer = Vec::new();
         asset.read_to_end(&mut buffer).unwrap();
-        futures::executor::block_on(audio.decode(buffer)).unwrap()
+        audio.decode(buffer)
     };
 
     let mut quit = false;
