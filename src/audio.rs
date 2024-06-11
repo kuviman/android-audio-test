@@ -16,7 +16,6 @@ impl Sound {
         node.set_buffer(self.buffer.clone());
         node.connect(&self.audio.inner.destination());
         node.start();
-        std::thread::sleep(std::time::Duration::from_secs(3));
     }
 }
 
