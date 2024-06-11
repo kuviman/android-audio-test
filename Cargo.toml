@@ -1,0 +1,40 @@
+[package]
+name = "android-audio-test"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+geng = { git = "https://github.com/geng-engine/geng" }
+
+[package.metadata.android]
+assets = "assets"
+sdk.target_sdk_version = 33
+
+[patch.crates-io]
+async-broadcast = { git = "https://github.com/kuviman/async-broadcast", branch = "fix-wasm-again" }
+
+batbox = { git = "https://github.com/geng-engine/batbox" }
+batbox-android = { git = "https://github.com/geng-engine/batbox" }
+batbox-tuple-macros = { git = "https://github.com/geng-engine/batbox" }
+batbox-i18n = { git = "https://github.com/geng-engine/batbox" }
+batbox-i18n-macro = { git = "https://github.com/geng-engine/batbox" }
+batbox-num = { git = "https://github.com/geng-engine/batbox" }
+batbox-approx = { git = "https://github.com/geng-engine/batbox" }
+batbox-color = { git = "https://github.com/geng-engine/batbox" }
+batbox-time = { git = "https://github.com/geng-engine/batbox" }
+batbox-file = { git = "https://github.com/geng-engine/batbox" }
+batbox-file-dialog = { git = "https://github.com/geng-engine/batbox" }
+batbox-preferences = { git = "https://github.com/geng-engine/batbox" }
+batbox-cli = { git = "https://github.com/geng-engine/batbox" }
+batbox-logger = { git = "https://github.com/geng-engine/batbox" }
+batbox-diff = { git = "https://github.com/geng-engine/batbox" }
+batbox-diff-derive = { git = "https://github.com/geng-engine/batbox" }
+batbox-collection = { git = "https://github.com/geng-engine/batbox" }
+batbox-collection-derive = { git = "https://github.com/geng-engine/batbox" }
+batbox-range = { git = "https://github.com/geng-engine/batbox" }
+batbox-cmp = { git = "https://github.com/geng-engine/batbox" }
+batbox-la = { git = "https://github.com/geng-engine/batbox" }
+batbox-lapp = { git = "https://github.com/geng-engine/batbox" }
