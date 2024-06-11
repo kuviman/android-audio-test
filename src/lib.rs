@@ -4,6 +4,7 @@ use android_activity::{
 };
 use log::info;
 
+// #[path = "rodio.rs"]
 mod audio;
 use audio::*;
 
