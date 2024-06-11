@@ -4,30 +4,32 @@ use android_activity::{
 };
 use log::info;
 
-struct Sound {
-    inner: geng_audio::Sound,
-}
+mod audio;
+use audio::*;
 
-impl Sound {
-    fn play(&self) {
-        self.inner.play();
-    }
-}
+#[cfg(feature = "never")]
+mod make_it_work {
+    use jni::{JNIEnv, JavaVM};
+    use std::ffi::c_void;
 
-struct Audio {
-    inner: geng_audio::Audio,
-}
-
-impl Audio {
-    fn new() -> Self {
-        Self {
-            inner: geng_audio::Audio::new().unwrap(),
+    #[no_mangle]
+    pub extern "C" fn JNI_OnLoad(
+        vm: jni::JavaVM,
+        res: *mut std::os::raw::c_void,
+    ) -> jni::sys::jint {
+        // Wait for debugger to connect OMEGALUL
+        std::thread::sleep(std::time::Duration::from_secs(3));
+        let env = vm.get_env().unwrap();
+        let vm = vm.get_java_vm_pointer() as *mut c_void;
+        unsafe {
+            ndk_context::initialize_android_context(vm, res);
         }
+        jni::JNIVersion::V6.into()
     }
-    fn decode(&self, buffer: Vec<u8>) -> Sound {
-        Sound {
-            inner: futures::executor::block_on(self.inner.decode(buffer)).unwrap(),
-        }
+
+    #[no_mangle]
+    pub unsafe extern "C" fn __cxa_pure_virtual() {
+        loop {}
     }
 }
 
