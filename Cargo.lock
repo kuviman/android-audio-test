@@ -1306,8 +1306,7 @@ checksum = "af190c94f2773fdb3729c55b007a722abb5384da03bc0986df4c289bf5567e96"
 [[package]]
 name = "web-audio-api"
 version = "0.45.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "eec6bae8695169036a4695a589b61ac36252608e0248f2239c229a665a6dbafe"
+source = "git+https://github.com/geng-engine/web-audio-api-rs?branch=android-buffer-size#b602b476769a358d8f29d35041636c0f2cf327ae"
 dependencies = [
  "arc-swap",
  "arrayvec",

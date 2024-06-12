@@ -8,7 +8,8 @@ crate-type = ["cdylib"]
 
 [dependencies]
 rodio = "0.18.1"
-web-audio-api = "0.45"
+# web-audio-api = "0.45"
+web-audio-api = { git = "https://github.com/geng-engine/web-audio-api-rs", branch = "android-buffer-size" }
 log = "0.4"
 # batbox-android = "*"
 
