@@ -36,7 +36,7 @@ mod make_it_work {
 
 #[no_mangle]
 fn android_main(app: AndroidApp) {
-    android_logger::init_once(android_logger::Config::default().with_min_level(log::Level::Info));
+    android_logger::init_once(android_logger::Config::default().with_min_level(log::Level::Debug));
 
     let audio = Audio::new();
     let sound = {

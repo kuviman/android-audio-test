@@ -9,6 +9,7 @@ crate-type = ["cdylib"]
 [dependencies]
 rodio = "0.18.1"
 web-audio-api = "0.45"
+log = "0.4"
 # batbox-android = "*"
 
 [target.'cfg(target_os = "android")'.dependencies]
@@ -19,7 +20,6 @@ ndk-sys = "0.6.0"
 ndk-context = "0.1.1"
 oboe = { version = "0.6", features = ["java-interface", "shared-stdcxx"] }
 android_logger = "0.11.0"
-log = "0.4"
 
 [package.metadata.android]
 assets = "assets"
